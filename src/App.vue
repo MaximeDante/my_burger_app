@@ -1,32 +1,61 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Toolbar :drawerToggleClicked="sideDrawerToggleHandler"/>
+    <SideDrawer :open="showSideDrawer" :closed="sideDrawerClosedHandler"/>
+    <h1>Maxime</h1>
+    <h1>Maxime</h1>
+    <!-- <OrderSummary/> -->
     <router-view/>
+     <BurgerIngredients type="bread-top"/>
+     <BurgerIngredients type="bacon"/>
+     <BurgerIngredients type="meat"/>
+     <BurgerIngredients type="cheese"/>
+     <BurgerIngredients type="salad"/>
+     <BurgerIngredients type="bread-bottom"/>
   </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
+import Toolbar from '@/components/Navigation/Toolbar/Toolbar.vue'
+import SideDrawer from '@/components/Navigation/SideDrawer/SideDrawer.vue'
+// import OrderSummary from '@/components/Burger/OrderSummary/OrderSummary.vue'
+import BurgerIngredients from '@/components/Burger/BurgerIngredients/BurgerIngredients.vue'
+
+export default Vue.extend({
+	name: "App",
+	components: {
+    Toolbar,
+    SideDrawer,
+    // OrderSummary,
+    BurgerIngredients,
+  },
+	props: {
+	
+	},
+  data () {
+    return {
+      showSideDrawer: false,
+    }
+  },
+  computed: {
+
+  },
+  methods: {
+    sideDrawerClosedHandler () {
+      this.showSideDrawer = false;
+    },
+    sideDrawerToggleHandler () {
+      return this.showSideDrawer = !this.showSideDrawer;
+    }
+  }
+});
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans",  sans-serif;
 }
 </style>
